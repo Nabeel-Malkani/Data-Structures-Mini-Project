@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include "node.h"
+#include <string>
 using namespace std;
 
 void levelOrder(Node *root)
@@ -138,7 +139,7 @@ int findHeight(Node *root)
 	else
 	{
 		lHeight = findHeight(root->left);
-		rHeight = findHeight(root->right);
+	 	rHeight = findHeight(root->right);
 	}
 
 	if (lHeight > rHeight || lHeight == rHeight)
