@@ -57,6 +57,7 @@ Node *Insert(Node *root, attributes obj)
 	return root;
 }
 
+
 void preOrder(Node *root) //fuction will keep calling itself
 {
 	if (root == NULL)
@@ -291,3 +292,14 @@ int main()
 	} while (flag == true);
 	system("Pause");
 }
+
+/*		Current progress on file reading
+string line;
+	ifstream File;
+	File.open("car dataset.txt", ios::in);
+	while (getline(File, line))
+	{
+		cout << line << endl;
+	}
+	File.close();
+*/
