@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include "node.h"
+#define COUNT 10
 using namespace std;
 
 void levelOrder(Node* root)
@@ -98,6 +99,31 @@ void postOrder(Node* root)
 	cout << endl << root->id;
 }
 
+void print2DUtil(Node *root, int space)
+{
+	// Base case
+	if (root == NULL)
+		return;
+
+	// Increase distance between levels
+	space += COUNT;
+
+	// Process right child first
+	print2DUtil(root->right, space);
+
+	// Print current node after space
+	// count
+	cout<<endl;
+	for (int i = COUNT; i < space; i++)
+		{	
+			cout<<" ";
+		}
+		cout<<root->id<<endl;
+
+	// Process left child
+	print2DUtil(root->left, space);
+}
+
 Node* findMin(Node* root)
 {
 	Node *_NR = new Node;
@@ -116,16 +142,17 @@ Node* findMin(Node* root)
 	}
 }
 
-int findMax(Node* root)
+Node* findMax(Node* root)
 {
+	Node *_NR = new Node;
 	if (root == NULL)
 	{
-		cout << endl
-			<< "The tree is empty.";
+		cout << endl << "The tree is empty.";
+		return NULL;
 	}
 	else if (root->right == NULL)
 	{
-		return root->id;
+		return root;
 	}
 	else
 	{
@@ -154,6 +181,12 @@ int findHeight(Node* root)
 	}
 }
 
+// Wrapper over print2DUtil()
+void print2D(Node *root)
+{
+	// Pass initial space count as 0
+	print2DUtil(root, 0);
+}
 bool search(Node* root, int data)
 {
 	if (root == NULL)
@@ -258,8 +291,18 @@ int main()
 		}
 		else if (choice == 4)
 		{
-			cout << endl
-				 << findMax(root);
+			Node *temp = new Node;
+			temp = findMax(root);
+			if (temp == NULL)
+			{
+				cout << endl << "The tree was empty." << endl;
+			}
+			else
+			{
+				cout << endl << "_______________________________________" << endl;
+				cout << temp->id << " " << temp->data << endl;
+				cout << "_______________________________________" << endl;
+			}
 		}
 		else if (choice == 5)
 		{
@@ -283,44 +326,11 @@ int main()
 		}
 		else if (choice == 11)
 		{
-			//cout << root->id << " " << root->object.data;
+			print2D(root);
 		}
 		else if (choice == 0)
 		{
 			flag = false;
 		}
 	} while (flag == true);
-	system("Pause");
 }
-
-/*
-void print2DUtil(Node *root, int space)
-{
-	// Base case
-	if (root == NULL)
-		return;
-
-	// Increase distance between levels
-	space += COUNT;
-
-	// Process right child first
-	print2DUtil(root->right, space);
-
-	// Print current node after space
-	// count
-	cout<<endl;
-	for (int i = COUNT; i < space; i++)
-		cout<<" ";
-	cout<<root->data<<"\n";
-
-	// Process left child
-	print2DUtil(root->left, space);
-}
-
-// Wrapper over print2DUtil()
-void print2D(Node *root)
-{
-	// Pass initial space count as 0
-	print2DUtil(root, 0);
-}
-*/
