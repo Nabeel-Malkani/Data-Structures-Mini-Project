@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include "node.h"
-#define COUNT 10
+#define COUNT 1
 using namespace std;
 
 void levelOrder(Node* root)
@@ -181,12 +181,6 @@ int findHeight(Node* root)
 	}
 }
 
-// Wrapper over print2DUtil()
-void print2D(Node *root)
-{
-	// Pass initial space count as 0
-	print2DUtil(root, 0);
-}
 bool search(Node* root, int data)
 {
 	if (root == NULL)
@@ -326,7 +320,7 @@ int main()
 		}
 		else if (choice == 11)
 		{
-			print2D(root);
+			print2DUtil(root, 0);
 		}
 		else if (choice == 0)
 		{
